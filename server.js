@@ -10,12 +10,11 @@ const PORT = (process.ENV && process.ENV.PORT) || 3000;
 
 //mongoose.connect(MONGOURL);
 
-const historicoTemperatura = [];
+const temperaturesLog = [];
 
 app.get('/temperature', async (req, res) => {
     try {
-        const temperatures = await Temperature.find({});
-        res.json({temperatures});
+        res.json({temperaturesLog});   
     } catch (error) {
         res.send(500);
     }
@@ -25,11 +24,12 @@ app.get('/temperature', async (req, res) => {
 app.post('/temperature', async (req, res) => {
 
     try {
-        const { date, temperature } = req.body;
-        const newdate = new Date();
-        console.log(temperature);
-        const newTemperature = new Temperature({date_received: newdate, temperature});
-        const result = await newTemperature.save();
+        const newTemperature = {
+            temperature: temperature,
+            _id: new Date().getTime(),
+        }
+        temperaturesLog.push(newTemperature);
+        response.json(temperaturesLog);
         res.send(201);
     } catch (error) {
         console.log(error);
