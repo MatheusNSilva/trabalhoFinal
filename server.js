@@ -2,15 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const Temperature = require('./model/temperture');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 
 app.use(bodyParser.json());
-
-mongoose.connect("mongodb://localhost:27017/final_homework");
-
-
-
+//const MONGOURL = (process.ENV && process.ENV.PORT) || "mongodb://localhost:27017/final_homework" 
 const PORT = (process.ENV && process.ENV.PORT) || 3000;
+
+//mongoose.connect(MONGOURL);
+
+const historicoTemperatura = [];
 
 app.get('/temperature', async (req, res) => {
     try {
