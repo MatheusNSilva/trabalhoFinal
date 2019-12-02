@@ -12,7 +12,7 @@ const PORT = (process.ENV && process.ENV.PORT) || 3000;
 
 const temperaturesLog = [];
 
-app.get('/temperature', async (req, res) => {
+app.get('/temperaturesLog', async (req, res) => {
     try {
         res.json({temperaturesLog});   
     } catch (error) {
@@ -21,15 +21,16 @@ app.get('/temperature', async (req, res) => {
     
 });
 
-app.post('/temperature', async (req, res) => {
+app.post('/temperaturesLog', async (req, res) => {
 
     try {
+        const { value } = req.body;
         const newTemperature = {
-            temperature: temperature,
+            value: value,
             _id: new Date().getTime(),
         }
         temperaturesLog.push(newTemperature);
-        response.json(temperaturesLog);
+        res.json(temperaturesLog);
         res.send(201);
     } catch (error) {
         console.log(error);
