@@ -12,7 +12,7 @@ const PORT = (process.env && process.env.PORT) || 5000;
 
 const temperaturesLog = [];
 
-app.get('/temperaturesLog', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         res.json({temperaturesLog});   
     } catch (error) {
