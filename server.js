@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-const Temperature = require('./model/temperture');
+//const Temperature = require('./model/temperture');
 //const mongoose = require('mongoose');
 
 app.use(bodyParser.json());
